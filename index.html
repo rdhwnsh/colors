@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="./libraries/bootstrap.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+
+    <style>
+        .card{
+            margin: 20px 0;
+        }       
+
+        a{
+            background: white;
+            padding: 5px;
+        } 
+    </style>
+
+</head>
+
+<body>
+
+    <div class="app">
+        <div class="container">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <p @click="toggle('instructions')" class="lead" >Click me to show/hide instructions</p>
+                    
+                    <div class="instructions">
+                        <p>rgb(<i>red</i>,<i>green</i>,<i>blue</i>)</p>
+
+
+
+                        <ul>
+                            <li><i>red</i> is 0 - 255</li>
+                            <li><i>green</i> is 0 - 255</li>
+                            <li><i>blue</i> is 0 - 255</li>
+                        </ul>
+
+                        <p>Press the:</p>
+                        <ul>
+                            <li>Blue button to generate color</li>
+                            <li>Red button to generate a RANDOM color</li>
+                            <li>Dark gray button to check on the color history</li>
+                        </ul>
+
+                        <p>FInish off by:</p>
+                        <ul>
+                            <li>Zooming in into an empty space</li>
+                            <li>Screenshot</li>
+                            <li>Crop and make it as your wallpaper!</li>
+                        </ul>
+                    </div>
+
+                    <!-- INPUT -->
+                    <input type="text" v-model="color.one" class="form-control">
+
+                    <!-- UPDATE COLOR -->
+                    <button class="btn btn-primary" @click="updateBackground()"><i class="fas fa-fill"></i></button>
+
+                    <!-- RANDOM COLOR -->
+                    <button class="btn btn-danger" @click="randomBackground()"><i class="fas fa-random"></i></button>
+
+                    <!-- HISTORY -->
+                    <button class="btn btn-dark" @click="toggle('color-history')"><i class="fas fa-history"></i></button>
+                </div>
+
+            </div>
+
+
+
+            <!-- COLOR HISTORY -->
+            <div class="color-history">
+
+                <!-- CLEAR HISTORY -->
+                <a @click="clearHistory()" href="#">Clear History</a>
+
+                <!-- LOOPING THROUGH -->
+                <div class="card" v-for="(color, i) in color.history">
+                    <div class="card-body">
+                        <p @click="logindex(i)">{{i+1}}) {{color}}</p>
+
+                        <!-- DELETE BUTTON -->
+                        <button @click="deleteEntry(i) " class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./libraries/vue.js"></script>
+    <script src="./libraries/jquery.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
