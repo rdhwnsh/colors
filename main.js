@@ -4,7 +4,8 @@ var app = new Vue({
     data() {
         return {
             app: {
-                name: "idk"
+                name: "Colors",
+                version: "v1.1.0"
             },
 
             color: {
