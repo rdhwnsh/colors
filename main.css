@@ -1,0 +1,14 @@
+body {
+    font-family: 'Karla', sans-serif;
+
+}
+
+.form-control {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card {
+    width: 200px;
+    margin: auto;
+}

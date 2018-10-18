@@ -5,7 +5,7 @@ var app = new Vue({
         return {
             app: {
                 name: "Colors",
-                version: "v1.1.1"
+                version: "v1.2.0"
             },
 
             color: {
@@ -17,7 +17,7 @@ var app = new Vue({
 
     methods: {
 
-        // TODO: If the color clicked is found in this history array, dont push anything into the array
+        // TODO: If the color clicked is found in this history array, dont push anything into the array [DONE]
         updateBackground() {
             // this.color.history.push(this.color.one)
             $("body").css("background", this.color.one)
