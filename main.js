@@ -19,14 +19,15 @@ var app = new Vue({
 
         // TODO: If the color clicked is found in this history array, dont push anything into the array [DONE]
         updateBackground() {
-            let color = this.color.rgb
             $("body").css("background", this.color.rgb)
-            this.updateButtonColor()
-
+            let color = this.color.rgb
+            
             // NOT FOUND
             if (this.color.history.indexOf(color) < 0) {
                 this.color.history.push(color)
+                this.updateButtonColor()
             }
+
         },
 
         logindex(i) {
@@ -35,11 +36,12 @@ var app = new Vue({
 
             this.color.rgb = this.color.history[i]
             this.updateBackground();
+
+            this.updateButtonColor()
         },
 
         randomBackground() {
             this.color.rgb = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
-            this.updateButtonColor()
             this.updateBackground()
         },
 
@@ -57,21 +59,17 @@ var app = new Vue({
         },
 
         updateButtonColor() {
-            for (var i = 0; i < this.color.history.length; i++) {
-                document.getElementsByClassName("changeColor")[i].style.background = this.color.history[i]
-
+            for(var i = 0; i < this.color.history.length; i++){
+                document.getElementsByClassName("changeColor")[i].style.backgroundColor = this.color.history[i]
             }
         }
     },
 
     mounted() {
         this.color.rgb = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
-
         this.updateBackground(this.color.rgb)
+        
         $(".color-history").hide();
         $(".instructions").hide();
-
-
-
     }
 })
