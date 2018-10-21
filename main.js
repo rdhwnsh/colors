@@ -5,7 +5,7 @@ var app = new Vue({
         return {
             app: {
                 name: "Colors",
-                version: "v1.3.1r1"
+                version: "v1.3.1r2"
             },
 
             color: {
