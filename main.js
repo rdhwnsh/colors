@@ -5,7 +5,7 @@ var app = new Vue({
         return {
             app: {
                 name: "Colors",
-                version: "v1.3.1r2"
+                version: "v1.3.2"
             },
 
             color: {
@@ -21,7 +21,7 @@ var app = new Vue({
         updateBackground() {
             $("body").css("background", this.color.rgb)
             let color = this.color.rgb
-            
+
             // NOT FOUND
             if (this.color.history.indexOf(color) < 0) {
                 this.color.history.push(color)
@@ -59,16 +59,22 @@ var app = new Vue({
         },
 
         updateButtonColor() {
-            for(var i = 0; i < this.color.history.length; i++){
+            for (var i = 0; i < this.color.history.length; i++) {
                 document.getElementsByClassName("changeColor")[i].style.backgroundColor = this.color.history[i]
             }
+        },
+
+        discoMode() {
+            setInterval(() => {
+                app.randomBackground()
+            }, 1)
         }
     },
 
     mounted() {
         this.color.rgb = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
         this.updateBackground(this.color.rgb)
-        
+
         $(".color-history").hide();
         $(".instructions").hide();
     }
