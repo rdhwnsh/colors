@@ -13,38 +13,41 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
         crossorigin="anonymous">
 
-        <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
 
-        <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
 
     <div class="app">
 
-        <div style="height: 40px;" @click="toggle('container')" ></div>
-        
-        <div class="container">
+        <div style="height: 40px;" @click="toggle('container')"></div>
+
+        <div class="container main-body">
 
             <div class="card">
 
+                <h3 class="card-header">{{app.name}} {{app.version}}</h3>
+                
                 <div class="card-body">
+
+                    <p>Press the red button to generate random colors, press the gray button to see the generation history</p>
+                    
                     <!-- INPUT -->
-                    <input type="text" v-model="color.one" class="form-control">
+                    <input type="text" v-model="color.rgb" class="form-control">
+
+                    <!-- REMOVED TILL FURTHER NOTICE!! -->
 
                     <!-- UPDATE COLOR -->
-                    <button class="btn btn-primary" @click="updateBackground()"><i class="fas fa-fill"></i></button>
+                    <!-- <button class="btn btn-primary" @click="updateBackground()"><i class="fas fa-fill"></i></button> -->
 
                     <!-- RANDOM COLOR -->
-                    <button class="btn btn-danger" @click="randomBackground()"><i class="fas fa-random"></i></button>
+                    <button class="btn btn-danger btn-block" @click="randomBackground()"><i class="fas fa-random"></i></button>
 
                     <!-- HISTORY -->
-                    <button class="btn btn-dark" @click="toggle('color-history')"><i class="fas fa-history"></i></button>
+                    <button class="btn btn-dark btn-block" @click="toggle('color-history')"><i class="fas fa-history"></i></button>
 
-                    <br>
-                    
-                    <small>{{app.name}} </small>
-                    <small>{{app.version}}</small>
                 </div>
 
             </div>
@@ -55,17 +58,11 @@
             <div class="color-history">
 
                 <!-- CLEAR HISTORY -->
-                <a @click="clearHistory()" href="#">Clear History</a>
+                <a @click="clearHistory()" href="#" class="btn btn-primary btn-block">Clear History</a>
 
                 <!-- LOOPING THROUGH -->
-                <div class="card" v-for="(color, i) in color.history">
-                    <div class="card-body">
-                        <button @click="logindex(i)" class="btn btn-primary btn-sm">{{color}}</button>
-
-                        <!-- DELETE BUTTON -->
-                        <button @click="deleteEntry(i) " class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-
-                    </div>
+                <div v-for="(color, i) in color.history">
+                    <button @click="logindex(i)" class="changeColor"></button>
                 </div>
             </div>
 

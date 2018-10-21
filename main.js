@@ -5,11 +5,11 @@ var app = new Vue({
         return {
             app: {
                 name: "Colors",
-                version: "v1.2.0"
+                version: "v1.3.0"
             },
 
             color: {
-                one: "",
+                rgb: "",
                 history: [],
             }
         }
@@ -19,27 +19,27 @@ var app = new Vue({
 
         // TODO: If the color clicked is found in this history array, dont push anything into the array [DONE]
         updateBackground() {
-            // this.color.history.push(this.color.one)
-            $("body").css("background", this.color.one)
+            let color = this.color.rgb
+            $("body").css("background", this.color.rgb)
+            this.updateButtonColor()
 
-            // FOUND
-            if (this.color.history.indexOf(this.color.one) > 0) {
-                console.log("FOUND")
-            } else {
-                console.log("NOT FOUND")
-                this.color.history.push(this.color.one)
-                // this.updateBackground();
+            // NOT FOUND
+            if (this.color.history.indexOf(color) < 0) {
+                this.color.history.push(color)
             }
         },
 
         logindex(i) {
-            this.color.one = this.color.history[i]
+
+            // CHANGE COLOR OG BUTTON
+
+            this.color.rgb = this.color.history[i]
             this.updateBackground();
         },
 
         randomBackground() {
-            this.color.one = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
-
+            this.color.rgb = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
+            this.updateButtonColor()
             this.updateBackground()
         },
 
@@ -54,15 +54,23 @@ var app = new Vue({
         deleteEntry(i) {
             console.log(i)
             this.color.history.splice(i, 1)
+        },
+
+        updateButtonColor() {
+            for (var i = 0; i < this.color.history.length; i++) {
+                document.getElementsByClassName("changeColor")[i].style.background = this.color.history[i]
+
+            }
         }
     },
 
     mounted() {
-        this.color.one = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
+        this.color.rgb = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
 
-        this.updateBackground(this.color.one)
+        this.updateBackground(this.color.rgb)
         $(".color-history").hide();
         $(".instructions").hide();
+
 
 
     }

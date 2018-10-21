@@ -1,14 +1,25 @@
-body {
-    font-family: 'Karla', sans-serif;
-
+.main-body {
+    /* font-family: 'Karla', sans-serif; */
+    width: 50%;
+    margin: auto;
 }
 
 .form-control {
     margin-bottom: 10px;
-    text-align: center;
+    padding: 25px 15px;
 }
 
-.card {
-    width: 200px;
-    margin: auto;
+.changeColor{
+    width: 70px;
+    height: 70px;
+    border: 0;
+    float: left;
+}
+
+.color-history{
+    margin: 20px 0;
+}
+
+.color-history .btn{
+    margin-bottom: 20px;
 }
